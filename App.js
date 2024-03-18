@@ -4,18 +4,14 @@ import React, { useState } from 'react';
 
 
 
-const Spoiler = ({ header = "+", open, children }) => {
-  const [isOpen, setIsOpen] = useState(open);
-
-  const toggleSpoiler = () => {
-    setIsOpen(!isOpen);
-  };
+const Spoiler = ({children}) => {
+  const [open, setOpen] = useState(false);
 
 
   return (
     <div style={{ marginBottom: '10px' }}>
-      <div
-        onClick={toggleSpoiler}
+      
+       <button onClick={()=> setOpen(!open)}
         style={{
           cursor: 'pointer',
           backgroundColor: 'blue',
@@ -24,14 +20,15 @@ const Spoiler = ({ header = "+", open, children }) => {
           marginBottom: '5px',
         }}
       >
-        {header}
+        Show /Hide</button>
+        {open && <div>{children}</div>}
       </div>
-      {isOpen && <div>{children}</div>}
-    </div>
+     
+    
   );
 };
 const RangeInput = ({ min, max, ...rest }) => {
-  const [text, setText] = useState("test")
+ 
   const [value, setValue] = useState('')
   const onChange = (e) => {
     const { value } = e.target;
